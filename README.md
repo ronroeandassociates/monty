@@ -185,9 +185,6 @@ julien@ubuntu:~/monty$ ./monty bytecodes/00.m
 julien@ubuntu:~/monty$
 ```
 
-trying to resolve yet again
-third time
-
 <p align="center">
 <img src="/images/roeHR-01.png" width=10% height=10%>
 </p>
