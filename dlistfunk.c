@@ -23,7 +23,7 @@ int dlist_remove(stack_t *node)
 	if (node == NULL || gs.size == 0)
 		return (-1);
 	/*remove element from gs*/
-	if (node == gs.head)/* handle removal from head of the list*/
+	if (node == gs.head) /* handle removal from head of the list*/
 	{
 		gs.head = node->next;
 
@@ -32,7 +32,7 @@ int dlist_remove(stack_t *node)
 		else
 			node->next->prev = NULL;
 	}
-	else/* handle removal from other than head in gs*/
+	else /* handle removal from other than head in gs*/
 	{
 		node->prev->next = node->next;
 
@@ -61,14 +61,14 @@ int dlist_ins_end(const int data)
 	/* Add new element into dlist_t */
 	new_node->n = data;
 
-	if (gs.size == 0)/*if list is empty*/
+	if (gs.size == 0) /*if list is empty*/
 	{
 		gs.head = new_node;
 		gs.head->prev = NULL;
 		gs.head->next = NULL;
 		gs.tail = new_node;
 	}
-	else/* -node->prev- -new_node- -node->next- */
+	else /* -node->prev- -new_node- -node->next- */
 	{
 		node = gs.tail;
 		new_node->next = node->next;
@@ -96,14 +96,14 @@ int dlist_ins_beg(const int data)
 	/* Add new element into dlist_t */
 	new_node->n = data;
 
-	if (gs.size == 0)/*if list is empty*/
+	if (gs.size == 0) /*if list is empty*/
 	{
 		gs.head = new_node;
 		gs.head->prev = NULL;
 		gs.head->next = NULL;
 		gs.tail = new_node;
 	}
-	else/* -node->prev- -new_node- -node->next- */
+	else /* -node->prev- -new_node- -node->next- */
 	{
 		node = gs.head;
 		new_node->next = node;

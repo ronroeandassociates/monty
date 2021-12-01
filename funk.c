@@ -9,7 +9,7 @@ void push(stack_t **head, unsigned int data)
 {
 	(void)head;
 
-	if (gs.mode == 1)/* Stack */
+	if (gs.mode == 1) /* Stack */
 		data = dlist_ins_end(gs.intarg);
 	else /* Queue */
 		data = dlist_ins_beg(gs.intarg);

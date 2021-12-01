@@ -1,24 +1,32 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
-*Created by Ron Olsen* 
+
+_Created by Ron Olsen_
 _ using resources provided By Julien Barbier, co-founder & CEO at Holberton School _
 
 ## Resources
+
 ### Read or watch:
 
 - [Google](https://intranet.hbtn.io/rltoken/9As52jwA5YHxooh8KeEZ6Q)
 - [How do I use extern to share variables between source files in C?](https://intranet.hbtn.io/rltoken/K61tEfTxZgYZ1DjaEvlPNg)
+
 ## Learning Objectives
+
 At the end of this project, I am expected to be able to explain to anyone, without the help of Google:
 
 ## General
+
 - What do LIFO and FIFO mean
 - What is a stack, and when to use it
 - What is a queue, and when to use it
 - What are the common implementations of stacks and queues
 - What are the most common use cases of stacks and queues
 - What is the proper way to use global variables
+
 ## Requirements
+
 ## General
+
 - Allowed editors: vi, vim, emacs
 - All files will be compiled on Ubuntu 14.04 LTS
 - Programs and functions will be compiled with gcc 4.8.4 using the flags -Wall -Werror -Wextra and -pedantic
@@ -29,8 +37,10 @@ At the end of this project, I am expected to be able to explain to anyone, witho
 - Allowed to use the C standard library
 - The prototypes of all functions are included in header file called monty.h
 - All header files are include guarded
+
 ## Data structures
-I am  using the following data structures for this project. Don’t forget to include them in your header file.
+
+I am using the following data structures for this project. Don’t forget to include them in your header file.
 
 ```
 /**
@@ -49,6 +59,7 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 ```
+
 ```
 /**
  * struct instruction_s - opcode and its function
@@ -64,21 +75,27 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 ```
+
 ## Compilation & Output
+
 - code will be compiled this way:
-``` $ gcc -Wall -Werror -Wextra -pedantic *.c -o monty ```
+  `$ gcc -Wall -Werror -Wextra -pedantic *.c -o monty`
 - Any output must be printed on stdout
 - Any error message must be printed on stderr
-	- [Here is a link to a GitHub repository](https://intranet.hbtn.io/rltoken/t97GmMsFqrOzPbJ4XOf0wA) that could help you making sure your errors are printed on stderr
+  - [Here is a link to a GitHub repository](https://intranet.hbtn.io/rltoken/t97GmMsFqrOzPbJ4XOf0wA) that could help you making sure your errors are printed on stderr
+
 ## Tests
+
 ### We strongly encourage you to work all together on a set of tests
 
 ## The Monty language
+
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.
 
 ### Monty byte code files
 
 Files containing Monty byte codes usually have the .m extension. Most of the industry uses this standard but it is not required by the specification of the language. There is not more than one instruction per line. There can be any number of spaces before or after the opcode and its argument:
+
 ```
 julien@ubuntu:~/monty$ cat -e bytecodes/000.m
 push 0$
@@ -92,7 +109,9 @@ push 4$
 pall$
 julien@ubuntu:~/monty$
 ```
+
 Monty byte code files can contain blank lines (empty or made of spaces only, and any additional text after the opcode or its required argument is not taken into account:
+
 ```
 julien@ubuntu:~/monty$ cat -e bytecodes/001.m
 push 0 Push 0 onto the stack$
@@ -112,43 +131,47 @@ $
 pall This is the end of our program. Monty is awesome!$
 julien@ubuntu:~/monty$
 ```
+
 ## The monty program
 
 - Usage: monty file
-	- where file is the path to the file containing Monty byte code
+  - where file is the path to the file containing Monty byte code
 - If the user does not give any file or more than one argument to your program, print the error message USAGE: monty file, followed by a new line, and exit with the status EXIT_FAILURE
 - If, for any reason, it’s not possible to open the file, print the error message Error: Can't open file <file>, followed by a new line, and exit with the status EXIT_FAILURE
-	- where <file> is the name of the file
+  - where <file> is the name of the file
 - If the file contains an invalid instruction, print the error message L<line_number>: unknown instruction <opcode>, followed by a new line, and exit with the status EXIT_FAILURE
-	- where is the line number where the instruction appears.
-	- Line numbers always start at 1
+  - where is the line number where the instruction appears.
+  - Line numbers always start at 1
 - The monty program runs the bytecodes line by line and stop if either:
-	- it executed properly every line of the file
-	- it finds an error in the file
-	- an error occured
+  - it executed properly every line of the file
+  - it finds an error in the file
+  - an error occured
 - If you can’t malloc anymore, print the error message Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE.
 - You have to use malloc and free and are not allowed to use any other function from man malloc (realloc, calloc, …)
 
 ## Tasks
+
 - [ ] 0. push, pall
-	Implement the push and pall opcodes.
+     Implement the push and pall opcodes.
 
-	## The push opcode
+  ## The push opcode
 
-	The opcode push pushes an element to the stack.
+  The opcode push pushes an element to the stack.
 
-	- Usage: push <int>
-		- where <int> is an integer
-	- if <int> is not an integer or if there is no argument given to push, print the error message L<line_number>: usage: push integer, followed by a new line, and exit with the status EXIT_FAILURE
-		- where is the line number in the file
-	- You won’t have to deal with overflows. Use the atoi function
-	## The pall opcode
+  - Usage: push <int>
+    - where <int> is an integer
+  - if <int> is not an integer or if there is no argument given to push, print the error message L<line_number>: usage: push integer, followed by a new line, and exit with the status EXIT_FAILURE
+    - where is the line number in the file
+  - You won’t have to deal with overflows. Use the atoi function
 
-	The opcode pall prints all the values on the stack, starting from the top of the stack.
+  ## The pall opcode
 
-		- Usage pall
-		- Format: see example
-		- If the stack is empty, don’t print anything
+  The opcode pall prints all the values on the stack, starting from the top of the stack.
+
+      - Usage pall
+      - Format: see example
+      - If the stack is empty, don’t print anything
+
 ```
 julien@ubuntu:~/monty$ cat -e bytecodes/00.m
 push 1$
@@ -160,6 +183,11 @@ julien@ubuntu:~/monty$ ./monty bytecodes/00.m
 2
 1
 julien@ubuntu:~/monty$
-``` 
+```
+
 trying to resolve yet again
 third time
+
+<p align="center">
+<img src="/images/roeHR-01.png" width=10% height=10%>
+</p>
